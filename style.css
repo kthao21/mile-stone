@@ -11,14 +11,9 @@
     font-family: "Urbanist";
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('sky.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
+.logo {
+    font-family: 'Playwrite FR Trad';
+    color: white;
 }
 
 header {
@@ -86,6 +81,16 @@ header a {
     transform: scaleX(1);
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('sky.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
 .wrapper {
     width: 420px;
     background: transparent;
@@ -99,16 +104,38 @@ header a {
     color: #fff;
     border-radius: 10px;
     padding: 30px 40px;
-    transition: height .2s ease;
+    /* this transforms makes the wrapper disappear */
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
 }
 
 .wrapper.active {
-    height: 520px;
+    height: 600px;
 }
 
-.wrapper.active .login {
+.wrapper .form-box.login {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
     transition: none;
     transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+    transition: transform .18s ease;
+    transform: translateX(0);
 }
 
 .wrapper .login {
@@ -123,17 +150,6 @@ header a {
 .login.active {
     transition: transform .18s ease;
     transform: translateX(-400px);
-}
-
-.register {
-    position: absolute;
-    transition: none;
-    transform: translateX(400px)
-}
-
-.register.active {
-    transition: transform .18s ease;
-    transform: translateX(0);
 }
 
 .wrapper h1 {
@@ -214,7 +230,7 @@ header a {
     font-weight: 600;
 }
 
-.wrapper .register-link {
+.form-box.register-link {
     font-size: 14.5px;
     text-align: center;
     margin-top: 20px 0 15px;
